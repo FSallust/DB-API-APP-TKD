@@ -13,20 +13,15 @@ exports.authenticateToken = (req, res, next) => {
     if(!token) {
       return res.sendStatus(401);
     }
-  
+    console.log("jwt");
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-      if(err)  return res.sendStatus(401);
-  
-      User.findOne({Email: user.Email}).then((data) => {
-        if(user.lastname !== data.lastname) return res.sendStatus(401)
-        if(user.firstname !== data.firstname) return res.sendStatus(401)
-        if(user.password !== data.password) return res.sendStatus(401)
-        if(user.birthdate !== data.birthdate) return res.sendStatus(401)
+      if(err) return res.sendStatus(401);
+      
+      //verify user and dbData
+      User.findOne({email: user.email}).populate('id_role').then((data) => {
+        //console.log(data);
         if(user.email !== data.email) return res.sendStatus(401)
-        if(user.photo !== data.photo) return res.sendStatus(401)
-        if(user.qr !== data.qr) return res.sendStatus(401)
-        if(user.id_role !== data.id_role) return res.sendStatus(401)
-        if(user.id_grade !== data.id_grade) return res.sendStatus(401)
+        if(user.role !== data.id_role.label) return res.sendStatus(401)
         
         req.user = user;
         next();

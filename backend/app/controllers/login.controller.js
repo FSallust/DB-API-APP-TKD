@@ -4,18 +4,13 @@ const User = db.user;
 
 exports.login = async (req, res) => {
 
-    User.findOne({ email: req.body.email }).then((data) => {
-
+    User.findOne({ email: req.body.email })
+        .populate('id_role')
+        .then((data) => {
+        //get password and email from user
         let user = {
-            lastname: req.body.lastname,
-            firstname: req.body.firstname,
             password: req.body.password,
-            birthdate: req.body.birthdate,
             email: req.body.email,
-            photo: req.body.photo,
-            qr: req.body.qr,
-            id_role: req.body.id_role,
-            id_grade: req.body.id_grade,
         }
 
         if (user !== null) {
@@ -27,9 +22,12 @@ exports.login = async (req, res) => {
                 res.status(401).send('Invalid credentials')
                 return;
             }
-
-            console.log("test");
-            const accessToken = auth.generateToken(user);
+            //insert user relevant informations into token
+            const accessToken = auth.generateToken({
+                email: data.email,
+                id: data._id,
+                role: data.id_role.label
+            });
             res.status(200).send({ accessToken });
         }
         else {
