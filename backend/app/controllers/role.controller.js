@@ -5,7 +5,6 @@ const Role = db.role;
 //#region GET
 exports.getAll = (req, res) => {
     if(req.user.role == "USER") {
-
         res.status(401).send({message: "Unauthorized"});
         return;
     }

@@ -6,13 +6,13 @@ module.exports = app => {
   var secured = require("express").Router();
 
   // Create a new User
-  unsecured.post("/", user.create);
+  unsecured.post("/", user.add);
 
   // Retrieve all Users
-  secured.get("/", user.findAll);
+  secured.get("/", user.getAll);
 
   // Retrieve a single User with id
-  secured.get("/:id", user.findOne);
+  secured.get("/:id", user.getOne);
 
   // Update a User with id
   secured.put("/:id", user.update);

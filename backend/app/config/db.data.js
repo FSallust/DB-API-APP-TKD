@@ -16,7 +16,7 @@ db.mongoose
     .then(async () => {
         //#region Grade datas
         g0 = new db.grade({
-            label: '10 KUP',
+            label: '',
             belt: 'Ceinture BLANCHE',
             level: 0
         });
