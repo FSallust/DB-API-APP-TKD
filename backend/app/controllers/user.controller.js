@@ -101,7 +101,7 @@ exports.getOne = (req, res) => {
 
 //#region UPDATE a User by its id
 exports.update = (req, res) => {
-    if (req.user.id !== req.params.id) {
+    if (req.user.id !== req.params.id && req.user.role !== 'ADMIN') {
         res.status(401).send({ message: "Unauthorized" });
         return;
     }
@@ -118,17 +118,27 @@ exports.update = (req, res) => {
                 if (!element) {
                     res.status(404).send({ message: `Cannot update User with id: ${id}` });
                 } else {
-                    element.updateOne({
+                    let toUpdate = {
                         //lastname: req.body.lastname,
                         //firstname: req.body.firstname,
                         password: req.body.password,
                         //birthdate: req.body.birthdate,
                         email: req.body.email,
                         photo: req.body.photo,
-                        qr: req.body.qr,
+                        //qr: req.body.qr,
                         //id_role: req.body.id_role,
                         //id_grade: req.body.id_grade,
-                    }).then(data => {
+                    }
+                    if(req.user.role === 'ADMIN') {
+                        toUpdate = {
+                            ...toUpdate, 
+                            qr: req.body.qr,
+                            id_role: req.body.id_role,
+                            id_grade: req.body.id_grade,
+                        };
+                    }
+                    element.updateOne(toUpdate).then(data => {
+                        data.password = null;
                         res.status(200).send(data)
                     });
                 }
