@@ -20,8 +20,8 @@ exports.authenticateToken = (req, res, next) => {
       //verify user and dbData
       User.findOne({email: user.email}).populate('id_role').then((data) => {
         //console.log(data);
-        if(user.email !== data.email) return res.sendStatus(401)
-        if(user.role !== data.id_role.label) return res.sendStatus(401)
+        if(user.email !== data.email) return res.sendStatus(401);
+        if(user.role !== data.id_role.label) return res.sendStatus(401);
         
         req.user = user;
         //Permission verification

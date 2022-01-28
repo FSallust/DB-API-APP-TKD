@@ -138,7 +138,6 @@ exports.update = (req, res) => {
                         };
                     }
                     element.updateOne(toUpdate).then(data => {
-                        data.password = null;
                         res.status(200).send(data)
                     });
                 }
