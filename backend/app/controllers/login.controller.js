@@ -9,8 +9,8 @@ exports.login = async (req, res) => {
         .then((data) => {
         //get password and email from user
         let user = {
-            password: req.body.password,
-            email: req.body.email,
+            password: data.password,
+            email: data.email,
         }
 
         if (user !== null) {
