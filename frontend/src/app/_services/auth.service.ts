@@ -20,6 +20,11 @@ export class AuthService {
     if (this.isLog$ === undefined) {
       this.isLog$ = new BehaviorSubject(false);
     }
+    Storage.get({key:'token'}).then(token => {
+      if(token.value){
+        this.isLog$.next(true);
+      }
+    });
   }
 
   login(user: any): Observable<any> {

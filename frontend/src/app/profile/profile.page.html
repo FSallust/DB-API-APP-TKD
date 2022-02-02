@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Profil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content *ngIf="user">
+      <ion-grid>
+        <ion-row>
+          <ion-col><ion-item><ion-img src="{{user.photo}}" alt="{{'Photo de ' + user.firstname}}"></ion-img></ion-item></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><ion-item>Nom</ion-item></ion-col>
+          <ion-col><ion-item>{{user.lastname}}</ion-item></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><ion-item>Prénom</ion-item></ion-col>
+          <ion-col><ion-item>{{user.firstname}}</ion-item></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><ion-item>Date de naissance</ion-item></ion-col>
+          <ion-col><ion-item>{{user.birthdate|date:'dd-MM-YYYY'}}</ion-item></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><ion-item>Email</ion-item></ion-col>
+          <ion-col><ion-item>{{user.email}}</ion-item></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><ion-item><ion-img src="" alt="Qr code non disponible"></ion-img></ion-item></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><ion-item>Niveau</ion-item></ion-col>
+          <ion-col><ion-item>{{user.id_grade}}</ion-item></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

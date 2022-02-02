@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
 
     //save token in storage
     this.authService.login({ email: this.email, password: this.password }).subscribe(data => {
-      console.log(data);
+      //console.log(data);
       if (data) {
         if (data.accessToken) {
           this.authService.isLog$.next(true);
@@ -40,7 +40,7 @@ export class LoginPage implements OnInit {
         }
       }
     }, e => {
-      console.log(e);
+      //console.log(e);
       this.authService.isLog$.next(false);
       toast.message = 'Connexion échouée!';
       toast.color = 'danger';
