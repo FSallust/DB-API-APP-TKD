@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@capacitor/storage';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { User } from '../_models/user';
 
 @Injectable({
@@ -13,8 +14,6 @@ export class AuthService {
   isLog$: BehaviorSubject<boolean>;
   user: User = null;
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  AUTH_SERVER = 'http://127.0.0.1:5400';
 
   constructor(private httpClient: HttpClient, private router: Router) {
     if (this.isLog$ === undefined) {
@@ -28,7 +27,7 @@ export class AuthService {
   }
 
   login(user: any): Observable<any> {
-    return this.httpClient.post(this.AUTH_SERVER + '/api/login', user);
+    return this.httpClient.post(environment.apiUrl + '/api/login', user);
   }
 
   logout() {

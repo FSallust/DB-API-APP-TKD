@@ -16,68 +16,55 @@ db.mongoose
     .then(async () => {
         //#region Grade datas
         g0 = new db.grade({
-            label: '',
-            belt: 'Ceinture BLANCHE',
+            belt: 'BLANCHE',
             level: 0
         });
         g1 = new db.grade({
-            label: '9 KUP',
-            belt: 'Ceinture JAUNE',
+            belt: 'JAUNE 9 KUP',
             level: 1
         });
         g2 = new db.grade({
-            label: '8 KUP',
-            belt: 'Ceinture ORANGE',
+            belt: 'ORANGE 8 KUP',
             level: 2
         });
         g3 = new db.grade({
-            label: '7 KUP',
-            belt: 'Ceinture VERTE',
+            belt: 'VERTE 7 KUP',
             level: 3
         });
         g4 = new db.grade({
-            label: '6 KUP',
-            belt: 'Ceinture BLEUE',
+            belt: 'BLEUE 6 KUP',
             level: 4
         });
         g5 = new db.grade({
-            label: '5 KUP',
-            belt: 'Ceinture BLEUE-ROUGE',
+            belt: 'BLEUE-ROUGE 5 KUP',
             level: 5
         });
         g6 = new db.grade({
-            label: '4 KUP',
-            belt: 'Ceinture ROUGE',
+            belt: 'ROUGE 4 KUP',
             level: 6
         });
         g7 = new db.grade({
-            label: '3 KUP',
-            belt: 'Ceinture ROUGE',
+            belt: 'ROUGE 3 KUP',
             level: 7
         });
         g8 = new db.grade({
-            label: '2 KUP',
-            belt: 'Ceinture ROUGE',
+            belt: 'ROUGE 2 KUP',
             level: 8
         });
         g9 = new db.grade({
-            label: '1 KUP',
-            belt: 'Ceinture ROUGE',
+            belt: 'ROUGE 1 KUP',
             level: 9
         });
         g10 = new db.grade({
-            label: '1 DAN',
-            belt: 'Ceinture NOIRE',
+            belt: 'NOIRE 1 DAN',
             level: 10
         });
         g11 = new db.grade({
-            label: '2 DAN',
-            belt: 'Ceinture NOIRE',
+            belt: 'NOIRE 2 DAN',
             level: 11
         });
         g12 = new db.grade({
-            label: '3 DAN',
-            belt: 'Ceinture NOIRE',
+            belt: 'NOIRE 3 DAN',
             level: 12
         });
         await  g0.save();

@@ -88,6 +88,8 @@ exports.getOne = (req, res) => {
     const id = req.params.id;
 
     User.findById({ _id: id })
+        .populate('id_role')
+        .populate('id_grade')
         .then(data => {
             if (!data)
                 res.status(404).send({ message: "Not found User with id: " + id });

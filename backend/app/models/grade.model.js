@@ -1,15 +1,9 @@
 module.exports = mongoose => {
     var schema = mongoose.Schema({
-      label: {
-        type: String,
-        required: true,
-        maxLength: 50,
-        trim: true
-      },
       belt: {
         type: String,
         required: true,
-        maxLength: 50,
+        maxLength: 100,
         trim: true
       },
       level: {
