@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Enregistrement</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <form [formGroup]="regForm" (ngSubmit)="submitForm()" novalidate>
+        <!-- LASTNAME -->
+        <ion-item>
+          <ion-label position="floating">Nom de famille</ion-label>
+          <ion-input formControlName="lastname" type="text" required></ion-input>
+        </ion-item>
+        <!-- Error messages -->
+        <div *ngIf="regForm.controls['lastname'].invalid">
+          <ion-note color="danger" slot="end" *ngIf="regForm.hasError('required', 'lastname') && !regForm.controls['lastname'].pristine">
+            Champs requis!
+          </ion-note>
+          <ion-note color="danger" slot="end" *ngIf="regForm.hasError('minlength', 'lastname') && !regForm.controls['lastname'].pristine">
+            Nom trop court!
+          </ion-note>
+          <ion-note color="danger" slot="end" *ngIf="regForm.hasError('pattern', 'lastname') && !regForm.controls['lastname'].pristine">
+            Caractere.s non valide.s!
+          </ion-note>
+        </div>
+        <!-- FIRSTNAME -->
+        <ion-item>
+          <ion-label position="floating">Prénom</ion-label>
+          <ion-input formControlName="firstname" type="text" required></ion-input>
+        </ion-item>
+        <!-- Error messages -->
+        <div *ngIf="regForm.controls['firstname'].invalid">
+          <ion-note color="danger" slot="end" *ngIf="regForm.hasError('required', 'firstname') && !regForm.controls['firstname'].pristine">
+            Champs requis!
+          </ion-note>
+          <ion-note color="danger" slot="end" *ngIf="regForm.hasError('minlength', 'firstname') && !regForm.controls['firstname'].pristine">
+            Prénom trop court!
+          </ion-note>
+          <ion-note color="danger" slot="end" *ngIf="regForm.hasError('pattern', 'firstname') && !regForm.controls['firstname'].pristine">
+            Caractere.s non valide.s!
+          </ion-note>
+        </div>
+        <!-- BIRTHDATE -->
+        <ion-item>
+          <ion-label position="stacked">Date de naissance</ion-label>
+          <ion-datetime formControlName="birthdate" (ionChange)="getDate($event)" presentation="date" required></ion-datetime>
+        </ion-item>
+        <!-- Error messages -->
+        <div *ngIf="regForm.controls['birthdate'].invalid">
+          <ion-note color="danger" slot="end" *ngIf="regForm.hasError('required', 'birthdate') && !regForm.controls['birthdate'].pristine">
+            Champs requis!
+          </ion-note>
+        </div>
+        <!-- EMAIL -->
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input formControlName="email" type="email" placeholder="email@exemple.com" required></ion-input>
+        </ion-item>
+        <!-- Error messages -->
+        <div *ngIf="regForm.controls['email'].invalid">
+          <ion-note color="danger" slot="end" *ngIf="regForm.hasError('required', 'email') && !regForm.controls['email'].pristine">
+            Champs requis!
+          </ion-note>
+          <ion-note color="danger" slot="end" *ngIf="regForm.hasError('pattern', 'email') && !regForm.controls['email'].pristine">
+            Email invalide!
+          </ion-note>
+        </div>
+        <!-- PASSWORD -->
+        <ion-item>
+          <ion-label position="floating">Mot de passe</ion-label>
+          <ion-input formControlName="password" type="password" placeholder="Mot de passe" required></ion-input>
+        </ion-item>
+        <!-- Error messages -->
+        <div *ngIf="regForm.controls['password'].invalid">
+          <ion-note color="danger" slot="end" *ngIf="regForm.hasError('required', 'password') && !regForm.controls['password'].pristine">
+            Champs requis!
+          </ion-note>
+          <ion-note color="danger" slot="end" *ngIf="regForm.hasError('minlength', 'password') && !regForm.controls['password'].pristine">
+            Mot de passe trop court!
+          </ion-note>
+          <ion-note color="danger" slot="end" *ngIf="regForm.hasError('pattern', 'password') && !regForm.controls['password'].pristine">
+            Au moins un chiffre!
+          </ion-note>
+        </div>
+        <div class="centered-button">
+          <ion-button type="submit" expand="block">Inscrivez-vous</ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -8,13 +8,23 @@
   <ion-card>
     <ion-card-content>
       <ion-item>
-        <ion-input [(ngModel)]="email" type="text" placeholder="Email" ngModel required></ion-input>
+        <ion-input [(ngModel)]="email" type="email" placeholder="Email" ngModel required></ion-input>
       </ion-item>
       <ion-item>
         <ion-input [(ngModel)]="password" type="password" placeholder="Mot de passe" ngModel required></ion-input>
       </ion-item>
       <div class="centered-button">
-        <ion-button name="connexion" (click)="logIn()">Connexion</ion-button>
+        <ion-button name="connexion" (click)="logIn()" expand="block">Connexion</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-text>Pas encore un compte?</ion-text>
+      </ion-item>
+      <div class="centered-button">
+        <ion-button name="enregistrement" (click)="registration()" expand="block">Inscrivez-vous</ion-button>
       </div>
     </ion-card-content>
   </ion-card>

@@ -80,7 +80,7 @@ exports.getAll = (req, res) => {
 
 //Get a single User with an id
 exports.getOne = (req, res) => {
-    if (req.user.role == "USER") {
+    if (req.user.id !== req.params.id && req.user.role !== 'USER') {
         res.status(401).send({ message: "Unauthorized" });
         return;
     }

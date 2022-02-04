@@ -23,6 +23,7 @@ export class AppComponent {
         this.menu = [
           { title: 'Accueil', path: '/home', icon: 'home' },
           { title: 'Connexion', path: '/login', icon: 'log-in' },
+          { title: 'Enregistrement', path: '/registration', icon: 'person-add' },
         ];
       }
     });

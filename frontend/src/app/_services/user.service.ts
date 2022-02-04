@@ -16,9 +16,7 @@ export class UserService {
   constructor(private authservice: AuthService, private httpClient: HttpClient) { }
 
   create(user: any): Observable<any> {
-    return from(Storage.get({ key: 'token' })).pipe(mergeMap((token) =>
-      this.httpClient.post(environment.apiUrl + '/api/user/' + user, { headers: { Authorization: 'Bearer ' + token.value } })
-    ));
+      return this.httpClient.post(environment.apiUrl + '/api/user/', user);
   }
 
   getOne(id: string): Observable<any> {
