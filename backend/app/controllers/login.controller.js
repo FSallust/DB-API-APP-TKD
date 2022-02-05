@@ -3,16 +3,18 @@ const auth = require("../_tool/authentificator");
 const User = db.user;
 
 exports.login = async (req, res) => {
-
+    let user = null;
     User.findOne({ email: req.body.email })
         .populate('id_role')
         .then((data) => {
         //get password and email from user
-        let user = {
-            password: data.password,
+        if (data !== null) {
+            user = {
             email: data.email,
+            password: data.password,
+            }
         }
-
+        
         if (user !== null) {
             if (req.body.email !== user.email) {
                 res.status(401).send('Invalid credentials')
