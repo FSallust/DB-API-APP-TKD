@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'frontend',
+  appName: 'TKD 2.0',
   webDir: 'www',
   bundledWebRuntime: false
 };
