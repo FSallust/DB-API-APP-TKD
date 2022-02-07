@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { UserService } from '../_services/user.service';
 
 @Component({
@@ -13,11 +13,13 @@ export class RegistrationPage implements OnInit {
 
   regForm: FormGroup;
   isSubmitted = false;
+  maxDate = new Date().toISOString().slice(0, 10);
 
   constructor(private router: Router,
-    private formBuilder: FormBuilder,
-    private userService: UserService,
-    private toastController: ToastController) { }
+              private formBuilder: FormBuilder,
+              private userService: UserService,
+              private toastController: ToastController,
+              private modalController: ModalController) { }
 
   ngOnInit() {
     this.regForm = this.formBuilder.group({

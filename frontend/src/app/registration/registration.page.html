@@ -45,8 +45,17 @@
         <!-- BIRTHDATE -->
         <ion-item>
           <ion-label position="stacked">Date de naissance</ion-label>
-          <ion-datetime formControlName="birthdate" (ionChange)="getDate($event)" presentation="date" required></ion-datetime>
+          <ion-datetime formControlName="birthdate" (ionChange)="getDate($event)" presentation="date" min="1914-01-01" [max]="maxDate" required></ion-datetime>
         </ion-item>
+        <!-- MODAL -->
+        <!-- <ion-button id="openDatePicker">Date de naissance</ion-button>
+        <ion-modal trigger="openDatePicker">
+          <ng-template>
+            <ion-datetime formControlName="birthdate" (ionChange)="getDate($event)" presentation="date" min="1914-01-01" [max]="maxDate" required></ion-datetime>
+            <ion-button id="openDatePicker" expand="block">Valider</ion-button>
+          </ng-template>
+        </ion-modal> -->
+        
         <!-- Error messages -->
         <div *ngIf="regForm.controls['birthdate'].invalid">
           <ion-note color="danger" slot="end" *ngIf="regForm.hasError('required', 'birthdate') && !regForm.controls['birthdate'].pristine">
@@ -81,7 +90,7 @@
             Mot de passe trop court!
           </ion-note>
           <ion-note color="danger" slot="end" *ngIf="regForm.hasError('pattern', 'password') && !regForm.controls['password'].pristine">
-            Au moins un chiffre!
+            Mot de passe invalide!
           </ion-note>
         </div>
         <div class="centered-button">
