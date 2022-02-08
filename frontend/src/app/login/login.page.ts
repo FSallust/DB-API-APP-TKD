@@ -36,7 +36,7 @@ export class LoginPage implements OnInit {
           Storage.set({ key: 'token', value: data.accessToken });
           //show token
           toast.present();
-          this.router.navigate(['/home']);
+          this.router.navigate(['/profile']);
         }
       }
     }, e => {

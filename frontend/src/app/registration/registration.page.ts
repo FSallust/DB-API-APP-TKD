@@ -23,10 +23,10 @@ export class RegistrationPage implements OnInit {
 
   ngOnInit() {
     this.regForm = this.formBuilder.group({
-      lastname: [null, [Validators.required, Validators.minLength(2), Validators.pattern('^[A-zÀ-ú]+$')]],
+      lastname: [null, [Validators.required, Validators.minLength(2), Validators.pattern(/^[A-ZÀ-Ù]+$/i)]],
       firstname: [null, [Validators.required, Validators.minLength(2), Validators.pattern('^[A-zÀ-ú]+$')]],
       birthdate: [null, [Validators.required]],
-      email: [null, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
+      email: [null, [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
       password: [null, [Validators.required, Validators.minLength(6), Validators.pattern('^[a-zA-Z0-9!@#$%^&*]{6,100}$')]],
       presences: [[]],
       photo: [''],
