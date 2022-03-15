@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Administration</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-list-header color="dark">Membres du club</ion-list-header>
+      <ion-list *ngFor="let user of users">
+        <ion-item>
+          <!-- <ion-avatar slot="start"><img src="'data:image/jpg;base64,' + user.photo" alt="" *ngIf="user.photo"></ion-avatar> -->
+          <ion-label>
+            <h2>{{user.firstname + ' ' + user.lastname}}</h2>
+            <h4>{{user.email}}</h4>
+            <p>{{user.id_role.label}}</p>
+            <p>{{user.id_grade.belt}}</p>
+          </ion-label>
+          <ion-button slot="end" (click)="setModerator(user)" [color]="iconModColor(user.id_role.label)"><ion-icon name="star"></ion-icon></ion-button>
+          <ion-button slot="end" (click)="setAdmin(user)" [color]="iconAdminColor(user.id_role.label)"><ion-icon name="at-circle"></ion-icon></ion-button>
+          <ion-button slot="end"><ion-icon name="ban"></ion-icon></ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

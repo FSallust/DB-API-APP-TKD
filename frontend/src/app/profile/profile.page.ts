@@ -3,9 +3,8 @@ import { ToastController } from '@ionic/angular';
 import { AuthService } from '../_services/auth.service';
 import { Storage } from '@capacitor/storage';
 import { UserService } from '../_services/user.service';
-import jwt_decode from 'jwt-decode';
-import { DecodeToken } from '../_models/decodeToken';
 import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
+import { TokenInformationsService } from '../_services/token-informations.service';
 
 @Component({
   selector: 'app-profile',
@@ -18,7 +17,7 @@ export class ProfilePage implements OnInit {
   token: any;
   photo: string;
   password: string;
-  user: any;
+  user: any = null;
   source = null;
 
   private baseOptions: CameraOptions = {
@@ -28,32 +27,33 @@ export class ProfilePage implements OnInit {
 
   constructor(private authService: AuthService,
               private userService: UserService,
+              private tokenInfosService: TokenInformationsService,
               private toastController: ToastController,
-              private camera: Camera) {}
+              private camera: Camera) { }
 
   async ngOnInit() {
     if (this.authService.isLog$.getValue()) {
       this.token = null;
+      this.user = null;
       await Storage.get({ key: 'token' }).then(data => {
         if (data) {
           this.token = data.value;
           this.getUserInformations();
         }
-      } );
+      });
     }
   }
 
   async getUserInformations() {
-    const decodeToken = jwt_decode(this.token) as DecodeToken;
-    //console.log(decodeToken);
-    this.user = null;
-    await this.userService.getOne(decodeToken.id).subscribe(data => {
+    const dToken = this.tokenInfosService.getInfos(this.token);
+    await this.userService.getOne(dToken.id).subscribe(data => {
       if (data) {
         //console.log(data);
         this.user = data;
         //console.log(this.user);
       }
-    }, err => {console.log(err);
+    }, err => {
+      console.log(err);
     });
   }
 
@@ -68,8 +68,8 @@ export class ProfilePage implements OnInit {
       duration: 2000,
       color: 'success'
     });
-    const decodeToken = jwt_decode(this.token) as DecodeToken;
-    await this.userService.update({photo: result}, decodeToken.id).subscribe(data => {
+    const dToken = this.tokenInfosService.getInfos(this.token);
+    await this.userService.update({ photo: result }, dToken.id).subscribe(data => {
       if (data) {
         toast.present();
         this.getUserInformations();
@@ -84,8 +84,8 @@ export class ProfilePage implements OnInit {
 
   async uploadPic() {
     this.camera.getPicture({
-      sourceType: 0,
-      ...this.baseOptions
+      ...this.baseOptions,
+      sourceType: 0
     }).then((result) => this.savePic(result));
   }
 }

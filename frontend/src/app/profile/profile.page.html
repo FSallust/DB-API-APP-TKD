@@ -8,7 +8,7 @@
   <ion-card>
     <ion-card-content *ngIf="user">
       <ion-grid>
-        <ion-row>
+        <ion-row *ngIf="user.photo">
           <ion-col><ion-item><ion-img [src]="'data:image/jpg;base64,' + user.photo" alt="{{'Photo indisponible'}}"></ion-img></ion-item></ion-col>
         </ion-row>
         <ion-row>
@@ -35,11 +35,13 @@
           <ion-col><ion-item>{{user.id_grade.belt}}</ion-item></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col><ion-item>Changer la photo:</ion-item></ion-col>
-          <ion-col><ion-item>
-              <ion-button (click)="takePic()">Prendre une photo</ion-button>
-              <ion-button (click)="uploadPic()">Gallerie</ion-button>
-            </ion-item></ion-col>
+          <ion-item>
+            <ion-col>Changer la photo:</ion-col>
+            <ion-col>
+                <ion-button (click)="takePic()">Caméra</ion-button>
+                <ion-button (click)="uploadPic()">Gallerie</ion-button>
+            </ion-col>
+          </ion-item>
         </ion-row>
       </ion-grid>
     </ion-card-content>

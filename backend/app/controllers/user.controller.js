@@ -70,6 +70,8 @@ exports.getAll = (req, res) => {
     }
 
     User.find()
+        .populate('id_role')
+        .populate('id_grade')
         .then(data => {
             res.send(data);
         })
@@ -103,15 +105,19 @@ exports.getOne = (req, res) => {
 
 //#region UPDATE a User by its id
 exports.update = (req, res) => {
-    if (req.user.id !== req.params.id && req.user.role !== 'ADMIN') {
+    if (req.user._id === null) {
+        res.status(404).send({ message: "ID not found!" })
+    }
+    console.log("id found");
+    if (req.user.id !== req.params.id || req.user.role !== 'ADMIN') {
         res.status(401).send({ message: "Unauthorized" });
         return;
     }
-
+    console.log("authorization ok");
     if (!req.body) {
         return res.status(400).send({ message: "Data to update can not be empty!" });
     }
-
+    console.log("data ok");
     const id = req.params.id;
 
     User.find({ _id: id })
@@ -131,9 +137,9 @@ exports.update = (req, res) => {
                         //id_role: req.body.id_role,
                         //id_grade: req.body.id_grade,
                     }
-                    if(req.user.role === 'ADMIN') {
+                    if (req.user.role === 'ADMIN') {
                         toUpdate = {
-                            ...toUpdate, 
+                            ...toUpdate,
                             qr: req.body.qr,
                             id_role: req.body.id_role,
                             id_grade: req.body.id_grade,

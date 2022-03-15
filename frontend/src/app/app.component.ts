@@ -17,6 +17,7 @@ export class AppComponent {
         this.menu = [
           { title: 'Accueil', path: '/home', icon: 'home' },
           { title: 'Profil', path: '/profile', icon: 'person' },
+          { title: 'Administration', path: '/administration', icon: 'ribbon' },
           { title: 'Déconnexion', path: '/logout', icon: 'log-out' },
         ];
       } else {
