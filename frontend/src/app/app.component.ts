@@ -16,6 +16,7 @@ export class AppComponent {
       if (isLog) {
         this.menu = [
           { title: 'Accueil', path: '/home', icon: 'home' },
+          { title: 'Théorie', path: '/theory', icon: 'library' },
           { title: 'Profil', path: '/profile', icon: 'person' },
           { title: 'Administration', path: '/administration', icon: 'ribbon' },
           { title: 'Déconnexion', path: '/logout', icon: 'log-out' },
@@ -23,6 +24,7 @@ export class AppComponent {
       } else {
         this.menu = [
           { title: 'Accueil', path: '/home', icon: 'home' },
+          { title: 'Theory', path: '/theory', icon: 'library' },
           { title: 'Connexion', path: '/login', icon: 'log-in' },
           { title: 'Enregistrement', path: '/registration', icon: 'person-add' },
         ];
